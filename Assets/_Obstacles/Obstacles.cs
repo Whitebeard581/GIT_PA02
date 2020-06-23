@@ -7,6 +7,7 @@ public class Obstacles : MonoBehaviour
     [SerializeField] private int Hitpoints = 3;
     [SerializeField] private bool RandomRotation = false;
 
+    private bool Flag = false;
     private void Start()
     {
         if(RandomRotation)
@@ -20,6 +21,12 @@ public class Obstacles : MonoBehaviour
         if(transform.position.z <= -8)
         {
             Destroy(gameObject);
+        }
+
+        if (transform.position.z <= -8 && Flag == false)
+        {
+            Flag = true;
+            GameManager.thisManager.UpdateScoreInt();
         }
     }
 }
